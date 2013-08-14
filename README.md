@@ -24,7 +24,7 @@ Create simple YAML sequences (arrays) in the post's front matter like this:
     - 'alt text'
     - 'more alt text'
   image_caption:
-    - ''
+    - 'Photos from my trip to [the solar farm](http://example.com).'
 ```
 
 In the markup, these are referred to with standard Jekyll Liquid variables. Each variable is identified with a zero-index counter in the variable pointing to the string in the front matter sequence (array), e.g. `page.image[0]` for the first item in the sequence. These front matter images are conveniently also reusable for other purposes such as homepage indexes.
