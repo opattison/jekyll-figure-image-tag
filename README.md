@@ -4,11 +4,11 @@ by Oliver Pattison | http://oliverpattison.org
 
 ## What Is It?
 
-Create figure/img HTML blocks with optional classes and captions. This is a YAML-dependent Liquid tag plugin for Jekyll for those who fear link rot.
+Create figure/img HTML elements with optional classes and captions. This is a YAML-dependent Liquid tag plugin for Jekyll for those who fear link rot.
 
 ### Note
 
-This plugin is designed specifically for implementations with YAML front matter-based images, captions and alt text. Front matter-based images make sense if they are already a part of your workflow and post creation, but I realize that it is not a typical method for building Jekyll posts. You might want to adopt the approach if you want maintainable images with future-proofed URLs hosted in a centralized directory.
+This plugin is designed specifically for implementations with YAML front matter-based images, captions and alt text. Front matter-based images make sense if they are already a part of your workflow and post creation, but I realize that it is not a typical method for building Jekyll posts. You might want to adopt the approach if your goal is maintainable images with future-proofed URLs hosted in a single directory or bucket on a sub-domain for your Jekyll site.
 
 ## How to Use the Plugin
 
@@ -58,7 +58,7 @@ Output:
 </figure>
 ```
 
-By the way, the figcaption element can process markdown for hyperlinks – useful!
+By the way, the figcaption element can process markdown for hyperlinks – useful! The optional classes are useful for common needs like right/left aligning figures, or any other CSS you can imagine.
 
 ## Why Figure?
 
@@ -67,7 +67,7 @@ By the way, the figcaption element can process markdown for hyperlinks – usefu
 > The figure element represents a unit of content, optionally with a caption, that is self-contained, that is typically referenced as a single unit from the main flow of the document, and that can be moved away from the main flow of the document without affecting the document’s meaning.
 [source](http://dev.w3.org/html5/markup/figure.html)
 
-It is a solid, semantic way to contain an image and add a substantial descriptive caption. I find it particularly useful for enhancing writing that has a scientific focus.
+Figures provide a solid, semantic way to contain an image related to an article and add a substantial descriptive caption. I would imagine that it could be particularly useful for enhancing writing that has a scientific focus.
 
 [More reading from the W3C spec](http://www.whatwg.org/specs/web-apps/current-work/multipage/grouping-content.html#the-figure-element) and the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure).
 
