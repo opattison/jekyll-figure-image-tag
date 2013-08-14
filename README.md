@@ -12,6 +12,8 @@ This plugin is designed specifically for implementations with YAML front matter-
 
 ## How to Use the Plugin
 
+Clone or download this repository. Add the **figure_tag.rb** file to your _plugins folder. For more background and documentation on Jekyll plugins, [read the Jekyll docs](http://jekyllrb.com/docs/plugins/).
+
 Create simple YAML sequences (arrays) in the post's front matter like this:
 
 ``` yaml
@@ -33,13 +35,16 @@ In the markup, these are referred to with standard Jekyll Liquid variables. Each
 
 Assuming that all image URLs are all hosted from the same source, the image URL for the site leads the post's image file name like this: `{{ site.image_url }}{{ page.image[3] }}`. This arrangement is convenient if you have your images hosted elsewhere (sub-domain, S3, etc.). Currently the plugin does not support a different configuration for other types of image URLs, but it would be easy to modify or fork.
 
-Syntax: 
+Syntax:
+
 `{% figure [class name(s)] /path/to/image 'alt text' ['caption text'] %}`
 
 Sample (no classes or captions):
+
 `{% figure {{ page.image[1] }} {{ page.image_alt[1] }} %}`
 
-Sample (typical use): 
+Sample (typical use):
+
 `{% figure left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}`
 
 Output:
@@ -55,14 +60,14 @@ Output:
 
 By the way, the figcaption element can process markdown for hyperlinks – useful!
 
-## Why <figure>?
+## Why Figure?
 
 [Figure](http://dev.w3.org/html5/markup/figure.html) is an element introduced in the HTML5 spec that allows for semantically separated content (such as a photo or graph) that is directly related to the content of a document (unlike an `<aside>`). It may contain a descriptive caption called a `<figcaption>`. Or as the W3C spec puts it:
 
 > The figure element represents a unit of content, optionally with a caption, that is self-contained, that is typically referenced as a single unit from the main flow of the document, and that can be moved away from the main flow of the document without affecting the document’s meaning.
 [source](http://dev.w3.org/html5/markup/figure.html)
 
-It is a solid, semantic way to contain an image and add a long descriptive caption. I find it particularly useful for enhancing writing that has a scientific focus.
+It is a solid, semantic way to contain an image and add a substantial descriptive caption. I find it particularly useful for enhancing writing that has a scientific focus.
 
 [More reading from the W3C spec](http://www.whatwg.org/specs/web-apps/current-work/multipage/grouping-content.html#the-figure-element) and the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure).
 
