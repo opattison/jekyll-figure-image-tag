@@ -24,10 +24,15 @@ Create simple YAML sequences (arrays) in the post's front matter like this:
     - 'alt text'
     - 'more alt text'
   image_caption:
-    - 'Photos from my trip to [the solar farm](http://example.com).'
+    - 'A photo from my trip to [the solar farm](http://example.com).'
+    - 'Another photo from my trip.'
 ```
 
-In the markup, these are referred to with standard Jekyll Liquid variables. Each variable is identified with a zero-index counter in the variable pointing to the string in the front matter sequence (array), e.g. `page.image[0]` for the first item in the sequence. These front matter images are conveniently also reusable for other purposes such as homepage indexes.
+[Docs on YAML sequences](http://yaml4r.sourceforge.net/doc/page/collections_in_yaml.htm).
+
+In the markup, these are referred to with standard Jekyll Liquid variables. Each variable is identified with a zero-index counter in the variable pointing to the string in the front matter sequence (array), e.g. `page.image[0]` for the first item in the sequence. These front matter images are conveniently also reusable for other purposes such as homepage indexes. 
+
+If you haven't used YAML sequences like this, you may be wondering why you'd want to store image URLs and metadata in the front matter. One advantage is that the syntax for marking (down) images is always the same (`page.tag[i]`) no matter what post you're editing. Abstracting images outside of the post content body decreases the possible error for content editors since the syntax remains the same. Additionally, the photo URL and metadata are inextricably tied to that post, which could have value if you are maintaining a large project or doing content inventory.
 
 *Make sure to have an image host specified in the _config.yml file.* Example:
 
@@ -37,15 +42,15 @@ Assuming that all image URLs are all hosted from the same source, the image URL 
 
 Syntax:
 
-`{% figure [class name(s)] /path/to/image 'alt text' ['caption text'] %}`
+`{% figure_img [class name(s)] /path/to/image 'alt text' ['caption text'] %}`
 
 Sample (no classes or captions):
 
-`{% figure {{ page.image[1] }} {{ page.image_alt[1] }} %}`
+`{% figure_img {{ page.image[1] }} {{ page.image_alt[1] }} %}`
 
 Sample (typical use):
 
-`{% figure left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}`
+`{% figure_img left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}`
 
 Output:
 
@@ -53,7 +58,7 @@ Output:
 <figure class="left">
   <img src="http://images.example.com/solar-farm.jpg" alt="Landscape view of solar farm">
   <figcaption>
-    <p>Photos from my trip to <a href="http://example.com">the solar farm</a>.</p>
+    <p>A photo from my trip to <a href="http://example.com">the solar farm</a>.</p>
   </figcaption>
 </figure>
 ```
