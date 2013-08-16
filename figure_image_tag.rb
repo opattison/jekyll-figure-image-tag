@@ -54,7 +54,7 @@ module Jekyll
       # making sure that liquid tags referencing the front matter are parsed as liquid tags
       @src = Liquid::Template.parse("{{ #{@src} }}").render(context)
       @alt = Liquid::Template.parse("{{ #{@alt} }}").render(context)
-      @caption = Liquid::Template.parse("{{ #{@caption} | markdownify }}").render(context)
+      @caption = Liquid::Template.parse("{{ #{@caption} | markdownify }}").render(context) if @caption
       @site_url = Liquid::Template.parse("{{ site.image_url }}").render(context)
 
       if @class
