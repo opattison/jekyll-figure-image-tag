@@ -6,7 +6,7 @@
 # Documentation: https://github.com/opattison/jekyll-figure-image-tag/blob/master/README.md
 # 
 # Note: designed specifically for implementations with YAML front matter-based images, captions and alt text.
-# Create YAML collections in a post like this:
+# Create simple YAML sequences (arrays) in the post's front matter like this:
 # 
 #   image:
 #     - path/to/image
@@ -17,22 +17,22 @@
 #   image_url: http://images.example.com/
 # 
 # Syntax: 
-# {% figure [class name(s)] /path/to/image 'alt text' ['caption text'] %}
+# {% figure_img [class name(s)] /path/to/image 'alt text' ['caption text'] %}
 # 
 # Sample (typical use): 
-# {% figure left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}
+# {% figure_img left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}
 #
 # Output:
 # <figure class="left">
 #   <img src="http://images.example.com/solar-farm.jpg" alt="Landscape view of solar farm">
 #   <figcaption>
-#     <p>Photos from my trip to <a href="http://example.com">the solar farm</a>.</p>
+#     <p>A photo from my trip to <a href="http://example.com">the solar farm</a>.</p>
 #   </figcaption>
 # </figure>
 # 
 
 module Jekyll
-  class FigureTag < Liquid::Tag
+  class FigureImageTag < Liquid::Tag
 
     def initialize(tag_name, markup, tokens)
       super
@@ -66,13 +66,13 @@ module Jekyll
       figure += "<img src=\"#{@site_url}#{@src}\" alt=\"#{@alt}\"/>"
       
       if @caption
+        figure += "<figcaption>#{@caption}</figcaption>"
         figure += "</figure>"
       else
-        figure += "<figcaption>#{@caption}</figcaption>"
         figure += "</figure>"
       end
     end
   end
 end
 
-Liquid::Template.register_tag('figure', Jekyll::FigureTag)
+Liquid::Template.register_tag('figure_img', Jekyll::FigureImageTag)
