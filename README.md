@@ -12,7 +12,7 @@ This plugin is designed specifically for implementations with YAML front matter-
 
 ## Setting Up the Plugin
 
-Clone or download this repository. Add the **figure_tag.rb** file to your _plugins folder. For more background and documentation on Jekyll plugins, [read the Jekyll docs](http://jekyllrb.com/docs/plugins/).
+Clone or download this repository. Add the **figure_image_tag.rb** file to your _plugins folder. For more background and documentation on Jekyll plugins, [read the Jekyll docs](http://jekyllrb.com/docs/plugins/).
 
 Create simple YAML sequences (arrays) in the post's front matter like this:
 
