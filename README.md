@@ -36,7 +36,7 @@ If you haven't used YAML sequences like this, you may be wondering why you'd wan
 
 *Make sure to have an image host specified in the _config.yml file.* Example:
 
-  `image_url: http://images.example.com/`
+  `image_url: http://images.example.com`
 
 Assuming that all image URLs are all hosted from the same source, the image URL for the site leads the post's image file name like this: `{{ site.image_url }}{{ page.image[3] }}`. This arrangement is convenient if you have your images hosted elsewhere (sub-domain, S3, etc.). Currently the plugin does not support a different configuration for other types of image URLs, but it would be easy to modify or fork.
 

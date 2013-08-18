@@ -14,7 +14,7 @@
 # 
 # Make sure to have an image host specified in the _config.yml file:
 # 
-#   image_url: http://images.example.com/
+#   image_url: http://images.example.com
 # 
 # Syntax: 
 # {% figure_img [class name(s)] /path/to/image 'alt text' ['caption text'] %}
@@ -55,7 +55,7 @@ module Jekyll
       @src = Liquid::Template.parse("{{ #{@src} }}").render(context)
       @alt = Liquid::Template.parse("{{ #{@alt} }}").render(context)
       @caption = Liquid::Template.parse("{{ #{@caption} | markdownify }}").render(context) if @caption
-      @site_url = Liquid::Template.parse("{{ site.image_url }}").render(context)
+      @site_url = Liquid::Template.parse("{{ site.image_url }}\/").render(context)
 
       if @class
         figure = "<figure class=\"#{@class}\">"
