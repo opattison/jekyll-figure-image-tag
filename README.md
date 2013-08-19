@@ -30,7 +30,9 @@ Create simple YAML sequences (arrays) in the post's front matter like this:
 
 [Docs on YAML sequences](http://yaml4r.sourceforge.net/doc/page/collections_in_yaml.htm).
 
-In the markup, these are referred to with standard Jekyll Liquid variables. Each variable is identified with a zero-index counter in the variable pointing to the string in the front matter sequence (array), e.g. `page.image[0]` for the first item in the sequence. These front matter images are conveniently also reusable for other purposes such as homepage indexes. 
+The values declared in the YAML front matter will be used by the plugin to insert images in the post.
+
+In the markup, these are referred to with standard Jekyll Liquid variables. Each variable is identified with a zero-index counter in the variable pointing to the string in the front matter sequence (array), e.g. `page.image[0]` for the first item in the sequence. These front matter images are conveniently also reusable for other purposes such as homepage indexes.
 
 If you haven't used YAML sequences like this, you may be wondering why you'd want to store image URLs and metadata in the front matter. One advantage is that the syntax for marking (down) images is always the same (`page.tag[i]`) no matter what post you're editing. Abstracting images outside of the post content body decreases possible errors for content editors since the syntax remains the same. Additionally, the photo URL and metadata are inextricably tied to that post, which could have value if you are maintaining a large project or doing content inventory.
 
@@ -38,21 +40,21 @@ If you haven't used YAML sequences like this, you may be wondering why you'd wan
 
   `image_url: http://images.example.com`
 
-Assuming that all image URLs are all hosted from the same source, the image URL for the site leads the post's image file name like this: `{{ site.image_url }}{{ page.image[3] }}`. This arrangement is convenient if you have your images hosted elsewhere (sub-domain, S3, etc.). Currently the plugin does not support a different configuration for other types of image URLs, but it would be easy to modify or fork.
+Assuming that all image URLs are all hosted from the same source, the image URL for the site leads the post's image file name like this: `{{ site.image_url }}{{ page.image[3] }}` while automatically populating the `image_alt` attributes. This arrangement is convenient if you have your images hosted elsewhere (sub-domain, S3, etc.). Currently the plugin does not support a different configuration for other types of image URLs, but it would be easy to modify or fork.
 
 ## Let's See It Working, Then
 
 Syntax:
 
-`{% figure_img [class name(s)] /path/to/image 'alt text' ['caption text'] %}`
+`{% figure_img [class name(s)] integer [caption] %}`
 
 Sample (no classes or captions):
 
-`{% figure_img {{ page.image[1] }} {{ page.image_alt[1] }} %}`
+`{% figure_img 1 %}`
 
 Sample (typical use):
 
-`{% figure_img left {{ page.image[0] }} {{ page.image_alt[0] }} {{ page.image_caption[0] }} %}`
+`{% figure_img left 0 caption %}`
 
 Output:
 
@@ -64,6 +66,10 @@ Output:
   </figcaption>
 </figure>
 ```
+
+The integer value that you pick determines which image (and alt and caption) will be picked from the YAML sequence. Starting at 0 and counting through the sequence, this index value refers to the front matter.
+
+The caption is an optional element that you can include with "caption" or exclude by entering no value after the index.
 
 By the way, the figcaption element can process markdown for hyperlinks – useful! The optional classes are useful for common needs like right/left aligning figures, or any other CSS you can imagine.
 
