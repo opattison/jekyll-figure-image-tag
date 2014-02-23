@@ -9,18 +9,16 @@
 # Create simple YAML sequences (arrays) in the post's front matter like this:
 # 
 #   image:
-#     - path/to/image
-#     - path/to/another-image
-#   image_alt:
-#     - 'alt text'
-#     - 'more alt text'
-#   image_caption:
-#     - 'A photo from my trip to [the solar farm](http://example.com).'
-#     - 'Another photo from my trip.' 
+#     - url: path/to/image
+#       caption: 'A photo from my trip to [the solar farm](http://example.com).'
+#       alt: 'alt text'
+#     - url: path/to/another-image
+#       caption: 'Another photo from my trip.' 
+#       alt: 'more alt text'
 # 
-# Make sure to have an image domain specified in the _config.yml file:
+# Make sure to have an image domain specified in the _config.yml file (domain is customizable in this file too):
 # 
-#   image_url: http://images.example.com
+#   image_url: http://static.example.com/images
 # 
 # Syntax: 
 # {% figure_img [class name(s)] integer [caption] %}
@@ -46,6 +44,8 @@ module Jekyll
       @index = '0' #defaults to zero
       @caption = nil #not required
 
+      @image_url = 'image_url' # the name key for your image domain in _config.yml
+
       #creating regular expression that grabs the index $2 at minimum, but optionally class and caption
       if markup =~ /(\S.*\s+)?(\d)+\s?(caption)?/i
         #entering at least one integer will validate the regular expression
@@ -57,10 +57,10 @@ module Jekyll
 
     def render(context)
       # making sure that liquid tags referencing the front matter are parsed as liquid tags
-      @site_url = Liquid::Template.parse("{{ site.image_url }}").render(context)
-      @src = Liquid::Template.parse("{{ page.image[#{@index}] }}").render(context)
-      @alt = Liquid::Template.parse("{{ page.image_alt[#{@index}] }}").render(context)
-      @caption = Liquid::Template.parse("{{ page.image_caption[#{@index}] | markdownify }}").render(context) if @caption
+      @base_url = Liquid::Template.parse("{{ site.#{@image_url} }}").render(context)
+      @src = Liquid::Template.parse("{{ page.image[#{@index}].url }}").render(context)
+      @alt = Liquid::Template.parse("{{ page.image[#{@index}].alt }}").render(context)
+      @caption = Liquid::Template.parse("{{ page.image[#{@index}].caption | markdownify }}").render(context) if @caption
 
       if @class
         figure = "<figure class=\"#{@class}\">"
@@ -68,7 +68,7 @@ module Jekyll
         figure = "<figure>"
       end
 
-      figure += "<img src=\"#{@site_url}\/#{@src}\" alt=\"#{@alt}\"/>"
+      figure += "<img src=\"#{@base_url}\/#{@src}\" alt=\"#{@alt}\"/>"
       
       if @caption
         figure += "<figcaption>#{@caption}</figcaption>"
