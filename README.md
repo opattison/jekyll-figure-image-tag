@@ -1,8 +1,9 @@
+# [Not currently maintained – will respond to Issues]
 # Figure/image tag plugin for Jekyll
 
-by Oliver Pattison | http://oliverpattison.org
+Oliver Pattison | http://olivermak.es
 
-## What is tt?
+## What is it?
 
 Create figure/img HTML elements with optional classes and captions. This is a YAML-dependent Liquid tag plugin for Jekyll for those who fear link rot.
 
