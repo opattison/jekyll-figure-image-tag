@@ -1,7 +1,10 @@
 # [Not currently maintained – will respond to Issues]
+
+This use case can be solved without plugins as well – try using Liquid/HTML `[includes](https://jekyllrb.com/docs/templates/#tags)`.
+
 # Figure/image tag plugin for Jekyll
 
-Oliver Pattison | http://olivermak.es
+Oliver Pattison | https://olivermak.es
 
 ## What is it?
 
@@ -96,4 +99,4 @@ Figures provide a solid, semantic way to contain an image related to an article 
 
 - I first developed the plugin for [this Jekyll project](https://github.com/opattison/jeancflanagan) so I could use `<figure>` without writing HTML blocks every time.
 - Thanks to other [Jekyll plugin developers](http://jekyllrb.com/docs/plugins/) for open sourcing and documenting their plugins so I could borrow and learn.
-- Read more about [YAML sequences]([Docs on YAML sequences](http://yaml4r.sourceforge.net/doc/page/collections_in_yaml.htm).
+- Read more about [YAML sequences](http://yaml4r.sourceforge.net/doc/page/collections_in_yaml.htm).
