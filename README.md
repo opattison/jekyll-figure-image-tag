@@ -1,6 +1,6 @@
 # [Not currently maintained – will respond to Issues]
 
-This use case can be solved without plugins as well – try using Liquid/HTML `[includes](https://jekyllrb.com/docs/templates/#tags)`.
+This use case can be solved without plugins as well – try using Liquid/HTML [`includes`](https://jekyllrb.com/docs/templates/#tags).
 
 # Figure/image tag plugin for Jekyll
 
